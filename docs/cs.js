@@ -1,15 +1,15 @@
 window.addEventListener("ready", (msg) => {
-    if (msg.ready) {
+    //if (msg.ready) {
         chrome.desktopCapture.chooseDesktopMedia(['screen', 'window', 'tab', 'audio'], sender.tab, streamId => {
-            chrome.tabs.sendMessage(sender.tab.id, { streamId });
+            window.postMessage("stream", streamId);
         });
-    }
+    //}
 });
 
-window.sendMessage("ready", { ready: true });
-window.addEventListener("msg", msg => {
-    if (msg.streamId) {
-        gUM(msg.streamId);
+window.postMessage("ready", { ready: true });
+window.addEventListener("stream", msg => {
+    if (msg.data) {
+        gUM(msg.data);
     }
 });
 
