@@ -1,4 +1,4 @@
-window.addEventListener("message", (msg) => {
+/*window.addEventListener("message", (msg) => {
     if (msg.data == "ready") {
         chrome.desktopCapture.chooseDesktopMedia(['screen', 'window', 'tab', 'audio'], sender.tab, streamId => {
             window.postMessage(streamId, "*");
@@ -12,20 +12,21 @@ window.addEventListener("message", msg => {
         gUM(msg.data);
     }
 });
+*/
 
-async function gUM(streamId) {
+async function gUM() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
             audio: {
                 mandatory: {
                     chromeMediaSource: 'desktop',
-                    chromeMediaSourceId: streamId
+                    //chromeMediaSourceId: streamId
                 }
             },
             video: {
                 mandatory: {
                     chromeMediaSource: 'desktop',
-                    chromeMediaSourceId: streamId
+                    //chromeMediaSourceId: streamId
                 }
             },
         });
@@ -38,3 +39,5 @@ async function gUM(streamId) {
         console.log(err);
     }
 }
+
+gUM();
