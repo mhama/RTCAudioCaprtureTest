@@ -1,14 +1,14 @@
-window.addEventListener("ready", (msg) => {
-    //if (msg.ready) {
+window.addEventListener("message", (msg) => {
+    if (msg.data == "ready") {
         chrome.desktopCapture.chooseDesktopMedia(['screen', 'window', 'tab', 'audio'], sender.tab, streamId => {
-            window.postMessage("stream", streamId);
+            window.postMessage(streamId, "*");
         });
-    //}
+    }
 });
 
-window.postMessage("ready", { ready: true });
-window.addEventListener("stream", msg => {
-    if (msg.data) {
+window.postMessage("ready", "*");
+window.addEventListener("message", msg => {
+    if (msg.data != "ready") {
         gUM(msg.data);
     }
 });
