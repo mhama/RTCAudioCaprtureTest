@@ -23,12 +23,12 @@ async function gUM() {
                     //chromeMediaSourceId: streamId
                 }
             },
-            video: {
+            /*video: {
                 mandatory: {
                     chromeMediaSource: 'desktop',
                     //chromeMediaSourceId: streamId
                 }
-            },
+            },*/
         });
         // オーディオだけほしい場合は、videoトラックを削除
         // stream.getVideoTracks().forEach(track => {
