@@ -1,4 +1,4 @@
-chrome.runtime.onMessage.addListener((msg, sender, res) => {
+window.addEventListener("ready", (msg) => {
     if (msg.ready) {
         chrome.desktopCapture.chooseDesktopMedia(['screen', 'window', 'tab', 'audio'], sender.tab, streamId => {
             chrome.tabs.sendMessage(sender.tab.id, { streamId });
@@ -6,8 +6,8 @@ chrome.runtime.onMessage.addListener((msg, sender, res) => {
     }
 });
 
-chrome.runtime.sendMessage({ ready: true });
-chrome.runtime.onMessage.addListener(msg => {
+window.sendMessage("ready", { ready: true });
+window.addEventListener("msg", msg => {
     if (msg.streamId) {
         gUM(msg.streamId);
     }
