@@ -19,7 +19,7 @@ async function gUM() {
         const stream = await navigator.mediaDevices.getUserMedia({
             audio: {
                 mandatory: {
-                    chromeMediaSource: 'desktop',
+                    chromeMediaSource: 'screen',
                     //chromeMediaSourceId: streamId
                 }
             },
